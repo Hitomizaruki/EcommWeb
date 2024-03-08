@@ -14,7 +14,6 @@ function useFetch(api) {
         const res=await axios.get(param)
         const post=await res.data
         setState({...state,data:post,isLoading:false})
-
        } catch (error) {
 
         setState({...state,isError:true,isLoading:false})

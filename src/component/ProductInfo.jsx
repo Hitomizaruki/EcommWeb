@@ -7,7 +7,7 @@ function ProductInfo() {
     const {productID}=useParams()
     const {cart,setCart,setIsLoginShow}=useContext(Context)
     const {data,isError,isLoading}=useFetch(`https://dummyjson.com/products/${productID}`)
-
+    let ratingArray=[1,2,3,4,5]
     const [image,setImage]=useState('')
     useEffect(()=>{
         console.log(data)
@@ -59,6 +59,13 @@ function ProductInfo() {
             <span className="my-1">{data.category}</span>
 
             <h4 className="my-1"> $ {data.price}</h4>
+            <span className="my-1">
+                {ratingArray.map(rate=>{
+                    return rate<=data.rating
+                    ?<i className="bi bi-star-fill"style={{marginRight:"10px",color:"gold"}}key={rate}></i>
+                    :<i className="bi bi-star"style={{marginRight:"10px",color:"gold"}}key={rate}></i>
+                })}
+            </span>
             <button className="btn btn-dark text-light my-1 p-2"onClick={()=>{handleAddCart(data)}}>Add Cart</button>
             
           </div>
